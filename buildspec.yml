@@ -11,19 +11,19 @@ phases:
   pre_build:
     commands:
       - echo "Logging in to Amazon ECR..."
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 2111-2560-1405.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t flask-app .
+      - docker build -t dhivakar-flask-app .
       - echo "Tagging Docker image..."
-      - docker tag flask-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-app:latest
+      - docker tag dhivakar-flask-app:latest 2111-2560-1405.dkr.ecr.us-east-1.amazonaws.com/dhivakar-flask-app:latest
 
   post_build:
     commands:
       - echo "Pushing Docker image to ECR..."
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/flask-app:latest
+      - docker push 2111-2560-1405.dkr.ecr.us-east-1.amazonaws.com/dhivakar-flask-app:latest
 
 artifacts:
   files: []
